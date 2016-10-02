@@ -23,7 +23,8 @@ public class Funcionario implements Serializable {
     private String nome;
     private String senha;
 
-    
+    public void CasdastrarFilmes(){}
+    public void CadastrarClientes(){}
     
     
     public Long getId() {
