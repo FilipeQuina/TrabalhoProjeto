@@ -12,8 +12,8 @@ package locadora.model;
 public class Gerente {
 
     public static Gerente gerente;
-    private String login;
-    private String senha;
+    private String login = "master";
+    private String senha = "master";
 
     protected Gerente() {
     }

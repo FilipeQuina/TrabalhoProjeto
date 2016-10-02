@@ -16,12 +16,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
+import locadora.model.Gerente;
 
 /**
  *
  * @author Filipe
  */
-@WebServlet(name = "Controlador", urlPatterns = {"/Controlador"})
+@WebServlet(name = "Controlador", urlPatterns = {"/Logar"})
 public class Controlador extends HttpServlet {
 
     @PersistenceUnit(unitName = "LocadoraPU")
@@ -30,21 +31,27 @@ public class Controlador extends HttpServlet {
     @Resource(name = "java:comp/UserTransaction")
     UserTransaction ut;
 
+    Gerente g = Gerente.getInstancia();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        if (request.getRequestURI().contains("/Logar")) {
+              request.getRequestDispatcher("/WEB-INF/logar.jsp").forward(request, response);
+        }
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        @Override
+        protected void doPost
+        (HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-    }
+        }
 
-    @Override
-    public String getServletInfo() {
+        @Override
+        public String getServletInfo
+        
+            () {
         return "Short description";
-    }// </editor-fold>
+        }// </editor-fold>
 
-}
+    }
