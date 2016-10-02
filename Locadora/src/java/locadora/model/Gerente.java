@@ -20,8 +20,7 @@ public class Gerente {
 
     public static Gerente getInstancia() {
         if (gerente == null) {
-            gerente = new Gerente();
-            
+            gerente = new Gerente(); 
         }
         return gerente;
     }

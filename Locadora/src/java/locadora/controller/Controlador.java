@@ -22,7 +22,7 @@ import locadora.model.Gerente;
  *
  * @author Filipe
  */
-@WebServlet(name = "Controlador", urlPatterns = {"/Logar"})
+@WebServlet(name = "Controlador", urlPatterns = {"/Logar", "/ValidarLogin"})
 public class Controlador extends HttpServlet {
 
     @PersistenceUnit(unitName = "LocadoraPU")
@@ -37,21 +37,30 @@ public class Controlador extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if (request.getRequestURI().contains("/Logar")) {
-              request.getRequestDispatcher("/WEB-INF/logar.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/logar.jsp").forward(request, response);
         }
+
     }
-        @Override
-        protected void doPost
-        (HttpServletRequest request, HttpServletResponse response)
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        if (request.getRequestURI().contains("/ValidarLogin")) {
+            String loginServlet=request.getParameter("txtLogin");
+            String senhaServlet=request.getParameter("txtSenha");
+            if(loginServlet.equals(g.getLogin()) && senhaServlet.equals(g.getSenha())){
+            request.getRequestDispatcher("/WEB-INF/bemVindoGerente.jsp").forward(request, response);
+            }
+            else{
+        request.getRequestDispatcher("/WEB-INF/logar.jsp").forward(request, response);
         }
-
-        @Override
-        public String getServletInfo
-        
-            () {
-        return "Short description";
-        }// </editor-fold>
-
+        }
     }
+
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}

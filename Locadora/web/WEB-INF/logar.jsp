@@ -7,13 +7,12 @@
     </head>
     <body>
 
-        <form action="validarLogin">
+        <form action="ValidarLogin" method="POST">
             <div> 
-                <input type="text" name="txtLogin" value="" />
+                <input type="text" name="txtLogin"/>
             </div> 
             <div> 
-
-                <input type="password" name="txtSenha" value="" />
+                <input type="password" name="txtSenha"/>
             </div> 
             <div> 
                 <input type="submit" value="Entrar" />
