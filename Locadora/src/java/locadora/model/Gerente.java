@@ -10,5 +10,48 @@ package locadora.model;
  * @author Filipe
  */
 public class Gerente {
-    
+
+    public static Gerente gerente;
+    private String login;
+    private String senha;
+
+    protected Gerente() {
+    }
+
+    public static Gerente getInstancia() {
+        if (gerente == null) {
+            gerente = new Gerente();
+            
+        }
+        return gerente;
+    }
+
+    public void CadastrarFuncionarios() {
+
+    }
+
+    public void EditarFuncionarios() {
+
+    }
+
+    public void ExcluirFuncionarios() {
+
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
 }
