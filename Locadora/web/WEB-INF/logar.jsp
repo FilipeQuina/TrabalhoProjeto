@@ -7,7 +7,7 @@
     </head>
     <body>
 
-        <form action="ValidarLogin" method="POST">
+        <form action="ValidarLogin" method="GET">
             <div> 
                 <input type="text" name="txtLogin"/>
             </div> 
