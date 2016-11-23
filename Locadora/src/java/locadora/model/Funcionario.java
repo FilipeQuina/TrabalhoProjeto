@@ -15,18 +15,13 @@ import javax.persistence.Id;
  *
  * @author Filipe
  */
-@Entity
-public class Funcionario implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
+public class Funcionario {
     private Long id;
     private String nome;
     private String senha;
 
-    public Funcionario(){
-    }
-    public void CasdastrarFilmes(){}
-    public void CadastrarClientes(){}
+    
     
     
     public Long getId() {
@@ -52,7 +47,6 @@ public class Funcionario implements Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
     
     
 }

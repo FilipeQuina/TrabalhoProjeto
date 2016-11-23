@@ -16,14 +16,13 @@ import javax.persistence.Id;
  *
  * @author Filipe
  */
-@Entity
-public class Cliente implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
+public class Cliente {
     private Long id;
     private String nome;
-    private boolean isInadiplente;
 
+    
+    
     public Long getId() {
         return id;
     }
@@ -39,14 +38,7 @@ public class Cliente implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public boolean isIsInadiplente() {
-        return isInadiplente;
-    }
-
-    public void setIsInadiplente(boolean isInadiplente) {
-        this.isInadiplente = isInadiplente;
-    }
+    
 
     
 }
