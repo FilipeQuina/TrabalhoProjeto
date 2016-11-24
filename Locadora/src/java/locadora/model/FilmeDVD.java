@@ -1,12 +1,34 @@
 package locadora.model;
 
-import locadora.model.VO.Filme;
 
-public class FilmeDVD implements Filme {
 
-	@Override
-	public void inserirFilme() {
-		// TODO Auto-generated method stub
-		System.out.println("Filme de DVD incluido com sucesso!!");
+public class FilmeDVD  {
+ private Long Id;
+    private String nome;
+    private String autor;
 
-}}
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long Id) {
+        this.Id = Id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+    
+}
