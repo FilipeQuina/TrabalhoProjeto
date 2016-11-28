@@ -9,6 +9,13 @@ package locadora.model;
  *
  * @author aluno
  */
-public class PagamentoCartaoCredito{
-    
+public class PagamentoCartaoCredito implements Pagamento{
+     /**
+     *
+     * @param compra
+     */
+    @Override
+    public void processarCompra(Compra compra){
+        
+    }
 }
