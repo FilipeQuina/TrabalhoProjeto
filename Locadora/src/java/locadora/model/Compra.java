@@ -10,5 +10,22 @@ package locadora.model;
  * @author aluno
  */
 class Compra {
-    
+    private float valor;
+    private String nome;
+
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }

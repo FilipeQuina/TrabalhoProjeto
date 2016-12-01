@@ -16,6 +16,7 @@ public class PagamentoCartaoCredito implements Pagamento{
      */
     @Override
     public void processarCompra(Compra compra){
-        
+        compra.setValor(compra.getValor()+2);
+        System.out.println("Forma de pagamento escolhida: Cartão de Crédito (O valor da compra é somado com 2)\nValor total da compra:"+compra.getValor());        
     }
 }
