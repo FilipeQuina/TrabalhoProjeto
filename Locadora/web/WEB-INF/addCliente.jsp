@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <%@include file="cabecalho.jsp" %>
 <h1>Formulário</h1>
-<form action="cadastrarClientes.html" method="POST">
+<form action="cadastrarCliente.html" method="POST">
     <div>
         <label>Nome completo:</label>
         <input name="nome" />
