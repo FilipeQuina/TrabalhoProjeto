@@ -18,8 +18,8 @@ import javax.persistence.Id;
  */
 @Entity
 public class Compra implements Serializable {
-    public static final int BOLETO = 1;
-    public static final int CARTAO = 2;
+    //public static final int BOLETO = 1;
+    //public static final int CARTAO = 2;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -29,15 +29,15 @@ public class Compra implements Serializable {
     private FilmeBluRay filmesBD;
     private FilmeDVD filmesDVD;
     protected Pagamento processar;
-    protected int escolha;
+    //protected int escolha;
     
-    public Compra(float valor, Cliente cliente, FilmeBluRay filmesBD, FilmeDVD filmesDVD, int escolha) {
+    public Compra(float valor, Cliente cliente, FilmeBluRay filmesBD, FilmeDVD filmesDVD, String nome/*, int escolha*/) {
 		this.filmesBD = filmesBD;
                 this.filmesDVD = filmesDVD;
                 this.valor = valor+filmesBD.getValor()+filmesDVD.getValor();
                 this.nome = nome;
                 this.cliente = cliente;
-		switch (escolha) {
+		/*switch (escolha) {
 		case BOLETO:
 			processar = new PagamentoBoleto();
 			escolha = BOLETO;
@@ -48,7 +48,7 @@ public class Compra implements Serializable {
 			break;
 		default:
 			throw new RuntimeException("Erro!");
-		}
+		}*/
 	}
     
     
@@ -112,13 +112,13 @@ public class Compra implements Serializable {
         this.processar = processar;
     }
 
-    public int getEscolha() {
+    /*public int getEscolha() {
         return escolha;
     }
 
     public void setEscolha(int escolha) {
         this.escolha = escolha;
-    }
+    }*/
     
     
   
