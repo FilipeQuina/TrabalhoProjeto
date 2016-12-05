@@ -30,10 +30,9 @@ public class Funcionario implements Serializable {
     protected CalculaImposto estrategiaDeCalculo;
 
     
-    	public Funcionario(int cargo, double salarioBase, Long id, String nome, String senha) {
+    	public Funcionario(int cargo, double salarioBase, String nome, String senha) {
 		this.salarioBase = salarioBase;
                 this.nome = nome;
-                this.id = id;
                 this.senha = senha;
 		switch (cargo) {
 		case PADRAO:

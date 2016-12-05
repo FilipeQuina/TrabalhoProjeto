@@ -20,13 +20,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 import locadora.controller.ClienteJpaController;
+import locadora.controller.FuncionarioJpaController;
 import locadora.model.Cliente;
+import locadora.model.Funcionario;
 
 /**
  *
  * @author Guilherme
  */
-@WebServlet(name = "Servlet", urlPatterns = {"/Servlet", "/cadastrarCliente.html", "/listarClientes.html"})
+@WebServlet(name = "Servlet", urlPatterns = {"/Servlet", "/cadastrarCliente.html", "/listarClientes.html", "/cadastrarFuncionario.html", "/listarFuncionarios.html"})
 public class Servlet extends HttpServlet {
     @PersistenceUnit(unitName = "LocadoraPU")
     EntityManagerFactory emf;
@@ -60,6 +62,12 @@ public class Servlet extends HttpServlet {
         }
         else if (uri.contains("listarClientes.html")) {
             listAll(request, response);
+        }
+        else if (uri.contains("cadastrarFuncionario.html")) {
+            request.getRequestDispatcher("/WEB-INF/addFuncionario.jsp").forward(request, response);
+        }
+        else if (uri.contains("listarFuncionarios.html")) {
+            listAllF(request, response);
         }
     }
 
@@ -98,6 +106,21 @@ public class Servlet extends HttpServlet {
             }
             response.sendRedirect("listarClientes.html");
         }
+        else if (request.getRequestURI().contains("cadastrarFuncionario.html")) {
+            String nome = request.getParameter("nome");
+            String senha = request.getParameter("senha");
+            double salariobase = Double.parseDouble(request.getParameter("salariobase"));
+            Integer cargo = Integer.parseInt(request.getParameter("cargo"));
+            Funcionario a = new Funcionario(cargo, salariobase, nome, senha);
+            
+            FuncionarioJpaController daoFuncionario = new FuncionarioJpaController(ut, emf);
+            try {
+                daoFuncionario.create(a);
+            } catch (Exception ex) {
+                Logger.getLogger(Servlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            response.sendRedirect("listarFuncionarios.html");
+        }
     }
 
     
@@ -107,6 +130,13 @@ public class Servlet extends HttpServlet {
         System.out.println(clientes);
         request.setAttribute("clientes", clientes);
         request.getRequestDispatcher("/WEB-INF/listarClientes.jsp").forward(request, response);
+    }
+    private void listAllF(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        FuncionarioJpaController daoFuncionario = new FuncionarioJpaController(ut, emf);
+        List<Funcionario> Funcionarios = daoFuncionario.findFuncionarioEntities();
+        System.out.println(Funcionarios);
+        request.setAttribute("Funcionarios", Funcionarios);
+        request.getRequestDispatcher("/WEB-INF/listarFuncionarios.jsp").forward(request, response);
     }
     
     /**
