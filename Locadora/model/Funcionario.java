@@ -20,8 +20,6 @@ public class Funcionario {
     public static final int PADRAO = 1;
     public static final int GERENTE = 2;
     public static final int SECRETARIO = 3;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
     private String senha;
