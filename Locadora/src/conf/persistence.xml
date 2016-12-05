@@ -6,6 +6,7 @@
     <class>locadora.model.FilmeBluRay</class>
     <class>locadora.model.FilmeDVD</class>
     <class>locadora.model.Funcionario</class>
+    <class>locadora.model.Compra</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>

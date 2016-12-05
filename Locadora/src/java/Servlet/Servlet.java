@@ -20,20 +20,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 import locadora.controller.ClienteJpaController;
+import locadora.controller.CompraJpaController;
+import locadora.controller.FilmeBluRayJpaController;
+import locadora.controller.FilmeDVDJpaController;
 import locadora.controller.FuncionarioJpaController;
 import locadora.model.Cliente;
+import locadora.model.Compra;
+import locadora.model.FilmeBluRay;
+import locadora.model.FilmeDVD;
 import locadora.model.Funcionario;
 
 /**
  *
  * @author Guilherme
  */
-@WebServlet(name = "Servlet", urlPatterns = {"/Servlet", "/cadastrarCliente.html", "/listarClientes.html", "/cadastrarFuncionario.html", "/listarFuncionarios.html"})
+@WebServlet(name = "Servlet", urlPatterns = {"/Servlet", "/cadastrarCliente.html", "/listarClientes.html", "/cadastrarFuncionario.html", "/listarFuncionarios.html", "/cadastrarCompra.html"})
 public class Servlet extends HttpServlet {
+
     @PersistenceUnit(unitName = "LocadoraPU")
     EntityManagerFactory emf;
     @Resource(name = "java:comp/UserTransaction")
     UserTransaction ut;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -55,19 +63,27 @@ public class Servlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         String uri = request.getRequestURI();
         if (uri.contains("cadastrarCliente.html")) {
             request.getRequestDispatcher("/WEB-INF/addCliente.jsp").forward(request, response);
-        }
-        else if (uri.contains("listarClientes.html")) {
+        } else if (uri.contains("listarClientes.html")) {
             listAll(request, response);
-        }
-        else if (uri.contains("cadastrarFuncionario.html")) {
+        } else if (uri.contains("cadastrarFuncionario.html")) {
             request.getRequestDispatcher("/WEB-INF/addFuncionario.jsp").forward(request, response);
-        }
-        else if (uri.contains("listarFuncionarios.html")) {
+        } else if (uri.contains("listarFuncionarios.html")) {
             listAllF(request, response);
+        } else if (uri.contains("cadastrarCompra.html")) {
+            ClienteJpaController daoCliente = new ClienteJpaController(ut, emf);
+            FilmeBluRayJpaController daoFilmeBD = new FilmeBluRayJpaController(ut, emf);
+            FilmeDVDJpaController daoFilmeDVD = new FilmeDVDJpaController(ut, emf);
+            List<Cliente> clientes = daoCliente.findClienteEntities();
+            List<FilmeBluRay> bds = daoFilmeBD.findFilmeBluRayEntities();
+            List<FilmeDVD> dvds = daoFilmeDVD.findFilmeDVDEntities();
+            request.setAttribute("clientes", clientes);
+            request.setAttribute("bds", bds);
+            request.setAttribute("dvds", dvds);
+            request.getRequestDispatcher("/WEB-INF/addCompra.jsp").forward(request, response);
         }
     }
 
@@ -105,14 +121,13 @@ public class Servlet extends HttpServlet {
                 Logger.getLogger(Servlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             response.sendRedirect("listarClientes.html");
-        }
-        else if (request.getRequestURI().contains("cadastrarFuncionario.html")) {
+        } else if (request.getRequestURI().contains("cadastrarFuncionario.html")) {
             String nome = request.getParameter("nome");
             String senha = request.getParameter("senha");
             double salariobase = Double.parseDouble(request.getParameter("salariobase"));
             Integer cargo = Integer.parseInt(request.getParameter("cargo"));
             Funcionario a = new Funcionario(cargo, salariobase, nome, senha);
-            
+
             FuncionarioJpaController daoFuncionario = new FuncionarioJpaController(ut, emf);
             try {
                 daoFuncionario.create(a);
@@ -120,10 +135,24 @@ public class Servlet extends HttpServlet {
                 Logger.getLogger(Servlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             response.sendRedirect("listarFuncionarios.html");
+        } else if (request.getRequestURI().contains("cadastrarCompra.html")) {
+            String nome = request.getParameter("nome");
+            String senha = request.getParameter("senha");
+            double salariobase = Double.parseDouble(request.getParameter("salariobase"));
+            Integer cargo = Integer.parseInt(request.getParameter("cargo"));
+            //Compra a = new Compra();
+
+            CompraJpaController daoCompra = new CompraJpaController(ut, emf);
+            try {
+                //daoCompra.create(a);
+            } catch (Exception ex) {
+                Logger.getLogger(Servlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            response.sendRedirect("listarCompras.html");
         }
+
     }
 
-    
     private void listAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ClienteJpaController daoCliente = new ClienteJpaController(ut, emf);
         List<Cliente> clientes = daoCliente.findClienteEntities();
@@ -131,6 +160,7 @@ public class Servlet extends HttpServlet {
         request.setAttribute("clientes", clientes);
         request.getRequestDispatcher("/WEB-INF/listarClientes.jsp").forward(request, response);
     }
+
     private void listAllF(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         FuncionarioJpaController daoFuncionario = new FuncionarioJpaController(ut, emf);
         List<Funcionario> Funcionarios = daoFuncionario.findFuncionarioEntities();
@@ -138,7 +168,7 @@ public class Servlet extends HttpServlet {
         request.setAttribute("Funcionarios", Funcionarios);
         request.getRequestDispatcher("/WEB-INF/listarFuncionarios.jsp").forward(request, response);
     }
-    
+
     /**
      * Returns a short description of the servlet.
      *

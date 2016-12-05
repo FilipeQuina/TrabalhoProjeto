@@ -14,6 +14,17 @@ public class FilmeBluRay implements Serializable{
     private Long id;
     private String nome;
     private String autor;
+    private float valor;
+
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
+    }
+    
+    
 
     public Long getId() {
         return id;

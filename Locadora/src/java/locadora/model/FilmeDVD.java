@@ -14,6 +14,7 @@ public class FilmeDVD  implements Serializable{
     private Long id;
     private String nome;
     private String autor;
+    private float valor;
 
     public Long getId() {
         return id;
@@ -21,6 +22,14 @@ public class FilmeDVD  implements Serializable{
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
     }
 
 
