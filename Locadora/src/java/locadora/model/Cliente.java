@@ -16,8 +16,8 @@ import javax.persistence.Id;
  *
  * @author Filipe
  */
-
-public class Cliente {
+@Entity
+public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

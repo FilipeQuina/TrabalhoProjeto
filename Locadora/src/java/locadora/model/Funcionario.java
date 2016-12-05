@@ -15,8 +15,8 @@ import javax.persistence.Id;
  *
  * @author Filipe
  */
-
-public class Funcionario {
+@Entity
+public class Funcionario implements Serializable {
     public static final int PADRAO = 1;
     public static final int GERENTE = 2;
     public static final int SECRETARIO = 3;
