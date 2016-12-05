@@ -29,6 +29,9 @@ import locadora.model.Compra;
 import locadora.model.FilmeBluRay;
 import locadora.model.FilmeDVD;
 import locadora.model.Funcionario;
+import locadora.model.Pagamento;
+import locadora.model.PagamentoBoleto;
+import locadora.model.PagamentoCartaoCredito;
 
 /**
  *
@@ -152,11 +155,18 @@ public class Servlet extends HttpServlet {
             } catch (Exception ex) {
                 Logger.getLogger(Servlet.class.getName()).log(Level.SEVERE, null, ex);
             }
+            Pagamento pagamento;
             if(escolha == 1){
-                
+                pagamento = new PagamentoBoleto();
+                pagamento.processarCompra(a);
+                request.setAttribute("valor", pagamento.processarCompra(a));
+                request.getRequestDispatcher("/WEB-INF/efetuarCompra.jsp").forward(request, response);
             }
             else if(escolha == 2){
-                
+                pagamento = new PagamentoCartaoCredito();
+                pagamento.processarCompra(a);
+                request.setAttribute("valor", pagamento.processarCompra(a));
+                request.getRequestDispatcher("/WEB-INF/efetuarCompra.jsp").forward(request, response);
             }
             //response.sendRedirect("listarCompras.html");
         }
@@ -175,7 +185,7 @@ public class Servlet extends HttpServlet {
         FuncionarioJpaController daoFuncionario = new FuncionarioJpaController(ut, emf);
         List<Funcionario> Funcionarios = daoFuncionario.findFuncionarioEntities();
         System.out.println(Funcionarios);
-        request.setAttribute("Funcionarios", Funcionarios);
+        request.setAttribute("funcionarios", Funcionarios);
         request.getRequestDispatcher("/WEB-INF/listarFuncionarios.jsp").forward(request, response);
     }
 

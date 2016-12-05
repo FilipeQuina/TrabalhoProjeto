@@ -11,6 +11,6 @@ package locadora.model;
  */
 public interface Pagamento {
    
-    void processarCompra(Compra compra); 
+    float processarCompra(Compra compra); 
        
 }

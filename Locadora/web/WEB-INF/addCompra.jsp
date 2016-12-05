@@ -21,7 +21,7 @@
         <label>Escolha o DVD:<select name="dvd">
                 <option value="0">Nenhum</option>
                 <c:forEach var="dvd" items="${dvds}">
-                    <option value="${dvd.id}">${dvd.nome} Valor: ${dvd.valor}</option>
+                    <option value="${dvd.id}">${dvd.nome}</option>
                 </c:forEach>
             </select>
         </label>
@@ -30,7 +30,7 @@
         <label>Escolha o BD:<select name="bd">
                 <option value="0">Nenhum</option>
                 <c:forEach var="bd" items="${bds}">
-                    <option value="${bd.id}">${bd.nome} Valor: ${bd.valor}</option>
+                    <option value="${bd.id}">${bd.nome}</option>
                 </c:forEach>
             </select>
         </label>

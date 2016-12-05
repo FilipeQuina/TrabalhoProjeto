@@ -37,6 +37,7 @@ public class Funcionario implements Serializable {
 		this.salarioBase = salarioBase;
                 this.nome = nome;
                 this.senha = senha;
+                this.cargo = cargo;
 		switch (cargo) {
 		case PADRAO:
 			estrategiaDeCalculo = new CalculoImpostoQuinzeOuDez();
