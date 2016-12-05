@@ -19,7 +19,7 @@ public class ConexaoJDBC {
     };
     public static Connection getInstance() throws SQLException{
         if(instancia == null ){
-            instancia = DriverManager.getConnection("jdbc:derby://localhost:1527/lppo-2016-1", "usuario", "senha");
+            instancia = DriverManager.getConnection("jdbc:derby://localhost:1527/Sample", "app", "app");
         }
         return instancia;
     }

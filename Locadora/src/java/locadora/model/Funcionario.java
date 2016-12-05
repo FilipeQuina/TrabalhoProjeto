@@ -29,6 +29,9 @@ public class Funcionario implements Serializable {
     protected int cargo;
     protected CalculaImposto estrategiaDeCalculo;
 
+    public Funcionario() {
+    }
+
     
     	public Funcionario(int cargo, double salarioBase, String nome, String senha) {
 		this.salarioBase = salarioBase;

@@ -12,6 +12,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <form action="/AddFilmeBR" method="POST">
+            <input type="text" name="nome" value="" />
+            <input type="text" name="autor" value="" />
+            <input type="text" name="valor" value="" />
+            <input type="submit" value="Criar" />
+        </form>
+        
     </body>
 </html>

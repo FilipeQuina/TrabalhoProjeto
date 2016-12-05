@@ -30,6 +30,9 @@ public class Compra implements Serializable {
     private FilmeDVD filmesDVD;
     protected Pagamento processar;
     protected int escolha;
+
+    public Compra() {
+    }
     
     public Compra(float valor, Cliente cliente, FilmeBluRay filmesBD, FilmeDVD filmesDVD, int escolha) {
 		this.filmesBD = filmesBD;

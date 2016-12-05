@@ -22,9 +22,8 @@ import locadora.model.VO.FilmePrep;
 public class FilmeDVDPrep implements FilmePrep {
   private PreparedStatement operacaoListarTodos;
     private PreparedStatement operacaoCriar;
-    private PreparedStatement operacaoExcluir;
     @Override
-    public void carregaPrep() throws Exception {
+    public void carregaPrep(String tipoFilme) throws Exception {
         try{
            operacaoListarTodos = ConexaoJDBC.getInstance().prepareStatement("SELECT * FROM atividade");
            operacaoCriar = ConexaoJDBC.getInstance().prepareStatement("INSERT INTO (funcionario, descricao, tipo, horas) VALUES(?,?,?,?)", new String[]{"id"});

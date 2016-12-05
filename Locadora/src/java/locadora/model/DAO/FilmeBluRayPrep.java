@@ -22,12 +22,12 @@ import locadora.model.VO.FilmePrep;
 public class FilmeBluRayPrep implements FilmePrep {
   private PreparedStatement operacaoListarTodos;
     private PreparedStatement operacaoCriar;
-    private PreparedStatement operacaoExcluir;
+
     @Override
-    public void carregaPrep() throws Exception {
+    public void carregaPrep(String tipoFilme) throws Exception {
         try{
-           operacaoListarTodos = ConexaoJDBC.getInstance().prepareStatement("SELECT * FROM atividade");
-           operacaoCriar = ConexaoJDBC.getInstance().prepareStatement("INSERT INTO (funcionario, descricao, tipo, horas) VALUES(?,?,?,?)", new String[]{"id"});
+           operacaoListarTodos = ConexaoJDBC.getInstance().prepareStatement("SELECT * FROM "+tipoFilme);
+           operacaoCriar = ConexaoJDBC.getInstance().prepareStatement("INSERT INTO "+tipoFilme+" (nome, autor, valor) VALUES(?,?,?)", new String[]{"id"});
            //operacaoExcluir=ConexaoJDBC.getInstance().prepareStatement("DELETE from  where usuario='abc'");
         }catch (SQLException ex){
             Logger.getLogger(FilmeBluRayPrep.class.getName()).log(Level.SEVERE, null, ex);
@@ -41,10 +41,12 @@ public class FilmeBluRayPrep implements FilmePrep {
                    
             operacaoCriar.setString(1, filme.getNome());
             operacaoCriar.setString(2, filme.getAutor());
+            operacaoCriar.setFloat(3,filme.getValor());
             operacaoCriar.executeUpdate();
             ResultSet keys = operacaoCriar.getGeneratedKeys();
             if(keys.next()){
                 filme.setId(keys.getLong(1));
+     
             }
             
         }catch (SQLException ex){
@@ -66,6 +68,7 @@ public class FilmeBluRayPrep implements FilmePrep {
                 filmeBluRay.setId(resultado.getLong("id"));
                 filmeBluRay.setNome(resultado.getString("nome"));
                 filmeBluRay.setAutor(resultado.getString("autor"));
+                filmeBluRay.setValor(resultado.getFloat("valor"));
                 todos.add(filmeBluRay);
             }
         } catch (SQLException ex) {
