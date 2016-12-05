@@ -7,7 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%@include file="cabecalho.jsp" %>
+
 <h1>Formulário</h1>
 <form action="cadastrarCliente.html" method="POST">
     <div>

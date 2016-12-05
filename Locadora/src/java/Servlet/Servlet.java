@@ -137,18 +137,28 @@ public class Servlet extends HttpServlet {
             response.sendRedirect("listarFuncionarios.html");
         } else if (request.getRequestURI().contains("cadastrarCompra.html")) {
             String nome = request.getParameter("nome");
-            String senha = request.getParameter("senha");
-            double salariobase = Double.parseDouble(request.getParameter("salariobase"));
-            Integer cargo = Integer.parseInt(request.getParameter("cargo"));
-            //Compra a = new Compra();
+            Long idCliente = Long.parseLong(request.getParameter("cliente"));
+            Long idDVD = Long.parseLong(request.getParameter("dvd"));
+            Long idBD = Long.parseLong(request.getParameter("bd"));
+            Integer escolha = Integer.parseInt(request.getParameter("escolha"));
+            ClienteJpaController daoCliente = new ClienteJpaController(ut, emf);
+            FilmeBluRayJpaController daofilmeBD = new FilmeBluRayJpaController(ut, emf);
+            FilmeDVDJpaController daofilmeDVD = new FilmeDVDJpaController(ut, emf);
+            Compra a = new Compra(0f, daoCliente.findCliente(idCliente), daofilmeBD.findFilmeBluRay(idBD), daofilmeDVD.findFilmeDVD(idDVD), nome);
 
             CompraJpaController daoCompra = new CompraJpaController(ut, emf);
             try {
-                //daoCompra.create(a);
+                daoCompra.create(a);
             } catch (Exception ex) {
                 Logger.getLogger(Servlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            response.sendRedirect("listarCompras.html");
+            if(escolha == 1){
+                
+            }
+            else if(escolha == 2){
+                
+            }
+            //response.sendRedirect("listarCompras.html");
         }
 
     }

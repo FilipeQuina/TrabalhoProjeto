@@ -4,7 +4,7 @@
     Author     : Guilherme
 --%>
 
-<%@include file="cabecalho.jsp" %>
+
 <h1>Formulário</h1>
 <form action="cadastrarFuncionario.html" method="POST">
     <div>
