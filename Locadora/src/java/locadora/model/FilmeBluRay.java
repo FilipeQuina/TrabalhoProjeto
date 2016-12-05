@@ -15,7 +15,9 @@ public class FilmeBluRay implements Serializable{
     private String nome;
     private String autor;
     private float valor;
-
+    private boolean estadoativo;
+    
+    RecuperaLista Listamemento ;
     public FilmeBluRay() {
     }
 
@@ -53,6 +55,20 @@ public class FilmeBluRay implements Serializable{
 
     public void setAutor(String autor) {
         this.autor = autor;
+    }
+
+    /**
+     * @return the estadoativo
+     */
+    public boolean isEstadoativo() {
+        return estadoativo;
+    }
+
+    /**
+     * @param estadoativo the estadoativo to set
+     */
+    public void setEstadoativo(boolean estadoativo) {
+        this.estadoativo = estadoativo;
     }
     
 
